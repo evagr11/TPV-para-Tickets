@@ -1,0 +1,269 @@
+:root{
+  --bg: #14102b;
+  --bg-elev: #1e1840;
+  --bg-elev-2: #262052;
+  --linea: #362e63;
+
+  --combinado: #ff8a3d;
+  --cerveza: #ffcb3d;
+  --agua: #3ddcff;
+
+  --texto: #f5f2ff;
+  --texto-tenue: #a79ed6;
+
+  --verde: #37e08c;
+  --rojo: #ff4d6d;
+
+  --radio: 18px;
+  --radio-chico: 12px;
+}
+
+*{ box-sizing:border-box; -webkit-tap-highlight-color: transparent; }
+
+html,body{
+  margin:0;
+  padding:0;
+  background:var(--bg);
+  color:var(--texto);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  min-height:100vh;
+  overscroll-behavior:none;
+  user-select:none;
+  -webkit-user-select:none;
+}
+
+button{
+  font-family:inherit;
+  border:none;
+  cursor:pointer;
+  color:inherit;
+}
+button:active{ transform: scale(0.96); }
+
+input{
+  font-family:inherit;
+}
+
+/* ---------- TOPBAR ---------- */
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding: max(14px, env(safe-area-inset-top)) 18px 10px 18px;
+}
+.topbar h1{
+  font-size:19px;
+  font-weight:800;
+  letter-spacing:0.2px;
+  margin:0;
+}
+.icon-btn{
+  background:var(--bg-elev);
+  color:var(--texto-tenue);
+  border-radius:999px;
+  padding:8px 14px;
+  font-size:13px;
+  font-weight:700;
+}
+
+/* ---------- PANEL AJUSTES ---------- */
+.panel-ajustes{
+  margin:0 16px 14px 16px;
+  background:var(--bg-elev);
+  border:1px solid var(--linea);
+  border-radius:var(--radio);
+  padding:16px;
+}
+.panel-ajustes.oculto{ display:none; }
+.panel-titulo{
+  margin:0 0 10px 0;
+  font-size:13px;
+  font-weight:700;
+  color:var(--texto-tenue);
+  text-transform:uppercase;
+  letter-spacing:0.5px;
+}
+.ajuste-fila{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:8px 0;
+  border-bottom:1px solid var(--linea);
+}
+.ajuste-fila:last-of-type{ border-bottom:none; }
+.ajuste-label{ font-size:15px; font-weight:600; }
+.ajuste-input{
+  width:90px;
+  background:var(--bg-elev-2);
+  border:1px solid var(--linea);
+  border-radius:10px;
+  color:var(--texto);
+  font-size:17px;
+  font-weight:700;
+  text-align:right;
+  padding:8px 10px;
+}
+.btn-primario{
+  width:100%;
+  margin-top:14px;
+  background:var(--verde);
+  color:#0a2417;
+  font-weight:800;
+  font-size:16px;
+  border-radius:var(--radio-chico);
+  padding:13px;
+}
+
+/* ---------- APP ---------- */
+.app{
+  padding: 0 14px calc(24px + env(safe-area-inset-bottom)) 14px;
+  max-width:520px;
+  margin:0 auto;
+}
+
+/* ---------- TICKETS ---------- */
+.tickets{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  margin-bottom:14px;
+}
+.ticket-card{
+  background:var(--bg-elev);
+  border:1px solid var(--linea);
+  border-radius:var(--radio);
+  padding:12px 14px;
+  border-left:5px solid var(--acento, var(--texto-tenue));
+}
+.ticket-card[data-tipo="combinado"]{ --acento: var(--combinado); }
+.ticket-card[data-tipo="cerveza"]{ --acento: var(--cerveza); }
+.ticket-card[data-tipo="agua"]{ --acento: var(--agua); }
+
+.ticket-info{
+  display:flex;
+  align-items:baseline;
+  gap:8px;
+  margin-bottom:8px;
+}
+.ticket-icono{ font-size:20px; }
+.ticket-nombre{ font-size:16px; font-weight:700; flex:1; }
+.ticket-precio{ font-size:13px; color:var(--texto-tenue); font-weight:600; }
+
+.ticket-controles{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:18px;
+}
+.btn-contador{
+  width:56px;
+  height:56px;
+  border-radius:16px;
+  background:var(--bg-elev-2);
+  font-size:28px;
+  font-weight:800;
+  color:var(--acento);
+  line-height:1;
+}
+.ticket-cantidad{
+  min-width:46px;
+  text-align:center;
+  font-size:30px;
+  font-weight:800;
+  font-variant-numeric: tabular-nums;
+}
+.ticket-subtotal{
+  text-align:right;
+  margin-top:6px;
+  font-size:14px;
+  font-weight:700;
+  color:var(--texto-tenue);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- TOTAL ---------- */
+.total-box{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:var(--bg-elev-2);
+  border-radius:var(--radio);
+  padding:16px 18px;
+  margin-bottom:10px;
+}
+.total-label{ font-size:15px; font-weight:700; color:var(--texto-tenue); }
+.total-cifra{
+  font-size:30px;
+  font-weight:900;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- PAGO ---------- */
+.pago-box{
+  background:var(--bg-elev);
+  border:1px solid var(--linea);
+  border-radius:var(--radio);
+  padding:14px 18px;
+  margin-bottom:12px;
+}
+.pago-fila{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:6px 0;
+}
+.pago-label{ font-size:15px; font-weight:600; color:var(--texto-tenue); }
+.pago-cifra{
+  font-size:22px;
+  font-weight:800;
+  font-variant-numeric: tabular-nums;
+}
+.cambio-fila .pago-cifra{ color: var(--verde); font-size:26px; }
+.cambio-fila.negativo .pago-cifra{ color: var(--rojo); }
+.aviso-insuficiente{
+  text-align:right;
+  font-size:13px;
+  font-weight:800;
+  color:var(--rojo);
+  margin-top:2px;
+}
+.aviso-insuficiente.oculto{ display:none; }
+
+/* ---------- TECLADO ---------- */
+.teclado{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:9px;
+  margin-bottom:14px;
+}
+.tecla{
+  background:var(--bg-elev);
+  border:1px solid var(--linea);
+  border-radius:14px;
+  font-size:22px;
+  font-weight:700;
+  padding:16px 0;
+}
+.tecla-borrar{ color:var(--rojo); font-size:20px; }
+.tecla-exacto{
+  color:var(--verde);
+  font-size:15px;
+  font-weight:800;
+}
+
+/* ---------- LIMPIAR ---------- */
+.btn-limpiar{
+  width:100%;
+  background:transparent;
+  border:1.5px solid var(--rojo);
+  color:var(--rojo);
+  font-size:15px;
+  font-weight:800;
+  border-radius:var(--radio-chico);
+  padding:14px;
+}
+
+@media (max-width:340px){
+  .btn-contador{ width:48px; height:48px; font-size:24px; }
+  .ticket-cantidad{ font-size:26px; }
+}

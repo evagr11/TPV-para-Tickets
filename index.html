@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Barra · Tickets</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <h1>Barra de bebidas</h1>
+  <button id="btnAjustes" class="icon-btn" aria-label="Ajustar precios">⚙︎ Precios</button>
+</header>
+
+<!-- Panel de precios (oculto por defecto) -->
+<div id="panelAjustes" class="panel-ajustes oculto">
+  <p class="panel-titulo">Precio por ticket (€)</p>
+  <div class="ajuste-fila" data-tipo="combinado">
+    <span class="ajuste-label">🍹 Combinado</span>
+    <input type="number" inputmode="decimal" step="0.10" min="0" class="ajuste-input" id="precio-combinado">
+  </div>
+  <div class="ajuste-fila" data-tipo="cerveza">
+    <span class="ajuste-label">🍺 Cerveza / Refresco</span>
+    <input type="number" inputmode="decimal" step="0.10" min="0" class="ajuste-input" id="precio-cerveza">
+  </div>
+  <div class="ajuste-fila" data-tipo="agua">
+    <span class="ajuste-label">💧 Agua</span>
+    <input type="number" inputmode="decimal" step="0.10" min="0" class="ajuste-input" id="precio-agua">
+  </div>
+  <button id="btnGuardarPrecios" class="btn-primario">Guardar precios</button>
+</div>
+
+<main class="app">
+
+  <!-- Secciones de tickets -->
+  <section class="tickets">
+
+    <article class="ticket-card" data-tipo="combinado">
+      <div class="ticket-info">
+        <span class="ticket-icono">🍹</span>
+        <span class="ticket-nombre">Combinado</span>
+        <span class="ticket-precio" id="pu-combinado">0,00 €</span>
+      </div>
+      <div class="ticket-controles">
+        <button class="btn-contador menos" data-tipo="combinado" data-accion="menos" aria-label="Restar combinado">−</button>
+        <span class="ticket-cantidad" id="cant-combinado">0</span>
+        <button class="btn-contador mas" data-tipo="combinado" data-accion="mas" aria-label="Sumar combinado">+</button>
+      </div>
+      <div class="ticket-subtotal" id="sub-combinado">0,00 €</div>
+    </article>
+
+    <article class="ticket-card" data-tipo="cerveza">
+      <div class="ticket-info">
+        <span class="ticket-icono">🍺</span>
+        <span class="ticket-nombre">Cerveza / Refresco</span>
+        <span class="ticket-precio" id="pu-cerveza">0,00 €</span>
+      </div>
+      <div class="ticket-controles">
+        <button class="btn-contador menos" data-tipo="cerveza" data-accion="menos" aria-label="Restar cerveza">−</button>
+        <span class="ticket-cantidad" id="cant-cerveza">0</span>
+        <button class="btn-contador mas" data-tipo="cerveza" data-accion="mas" aria-label="Sumar cerveza">+</button>
+      </div>
+      <div class="ticket-subtotal" id="sub-cerveza">0,00 €</div>
+    </article>
+
+    <article class="ticket-card" data-tipo="agua">
+      <div class="ticket-info">
+        <span class="ticket-icono">💧</span>
+        <span class="ticket-nombre">Agua</span>
+        <span class="ticket-precio" id="pu-agua">0,00 €</span>
+      </div>
+      <div class="ticket-controles">
+        <button class="btn-contador menos" data-tipo="agua" data-accion="menos" aria-label="Restar agua">−</button>
+        <span class="ticket-cantidad" id="cant-agua">0</span>
+        <button class="btn-contador mas" data-tipo="agua" data-accion="mas" aria-label="Sumar agua">+</button>
+      </div>
+      <div class="ticket-subtotal" id="sub-agua">0,00 €</div>
+    </article>
+
+  </section>
+
+  <!-- Total -->
+  <section class="total-box">
+    <span class="total-label">Total a cobrar</span>
+    <span class="total-cifra" id="totalCifra">0,00 €</span>
+  </section>
+
+  <!-- Pago y cambio -->
+  <section class="pago-box">
+    <div class="pago-fila">
+      <span class="pago-label">Le entrega</span>
+      <span class="pago-cifra" id="pagoCifra">0,00 €</span>
+    </div>
+    <div class="pago-fila cambio-fila" id="cambioFila">
+      <span class="pago-label">Cambio</span>
+      <span class="pago-cifra" id="cambioCifra">0,00 €</span>
+    </div>
+    <div id="avisoInsuficiente" class="aviso-insuficiente oculto">Falta dinero</div>
+  </section>
+
+  <!-- Teclado numérico -->
+  <section class="teclado">
+    <button class="tecla" data-key="1">1</button>
+    <button class="tecla" data-key="2">2</button>
+    <button class="tecla" data-key="3">3</button>
+    <button class="tecla" data-key="4">4</button>
+    <button class="tecla" data-key="5">5</button>
+    <button class="tecla" data-key="6">6</button>
+    <button class="tecla" data-key="7">7</button>
+    <button class="tecla" data-key="8">8</button>
+    <button class="tecla" data-key="9">9</button>
+    <button class="tecla tecla-borrar" data-key="borrar">⌫</button>
+    <button class="tecla" data-key="0">0</button>
+    <button class="tecla tecla-exacto" data-key="exacto">Exacto</button>
+  </section>
+
+  <!-- Botón limpiar todo -->
+  <button id="btnLimpiar" class="btn-limpiar">Siguiente cliente · Limpiar todo</button>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>

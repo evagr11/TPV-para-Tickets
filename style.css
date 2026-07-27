@@ -30,6 +30,7 @@ html,body{
   overscroll-behavior:none;
   user-select:none;
   -webkit-user-select:none;
+  touch-action: manipulation; /* evita el zoom al tocar rápido varias veces */
 }
 
 button{
@@ -37,6 +38,8 @@ button{
   border:none;
   cursor:pointer;
   color:inherit;
+  touch-action: manipulation;
+  -webkit-touch-callout: none; /* evita el menú de "mantener pulsado" en iOS */
 }
 button:active{ transform: scale(0.96); }
 

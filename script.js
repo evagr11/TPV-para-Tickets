@@ -1,6 +1,11 @@
 (() => {
   "use strict";
 
+  // Red de seguridad extra: algunos gestos de zoom (pellizco) no los
+  // bloquea el CSS por sí solo en Safari, así que los cancelamos aquí.
+  document.addEventListener("gesturestart", (e) => e.preventDefault());
+  document.addEventListener("gesturechange", (e) => e.preventDefault());
+
   // ---------- Estado ----------
   // Todo el dinero se maneja en CÉNTIMOS (enteros) para que no haya
   // errores de redondeo con decimales, ni en los subtotales ni en el cambio.

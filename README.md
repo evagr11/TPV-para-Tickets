@@ -17,6 +17,12 @@
 
 La aplicación realiza todos los cálculos monetarios utilizando céntimos como unidad base (enteros) para **garantizar la máxima precisión** y evitar los errores de redondeo comunes al trabajar con números flotantes.
 
+<br>
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/ab5ec012-8959-4621-a6d4-6afc5f77493d" alt="Mockup TPV" width="70%"/>
+  <p><em>Mockup TPV para Tickets</em></p>
+</div>
 
 ✨ **Características principales:**
 

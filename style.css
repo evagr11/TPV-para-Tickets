@@ -6,6 +6,7 @@
 
   --combinado: #ff8a3d;
   --cerveza: #ffcb3d;
+  --refresco: #7cff6b;
   --agua: #3ddcff;
 
   --texto: #f5f2ff;
@@ -140,6 +141,7 @@ input{
 }
 .ticket-card[data-tipo="combinado"]{ --acento: var(--combinado); }
 .ticket-card[data-tipo="cerveza"]{ --acento: var(--cerveza); }
+.ticket-card[data-tipo="refresco"]{ --acento: var(--refresco); }
 .ticket-card[data-tipo="agua"]{ --acento: var(--agua); }
 
 .ticket-info{

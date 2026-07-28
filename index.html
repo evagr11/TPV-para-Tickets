@@ -23,8 +23,12 @@
     <input type="number" inputmode="decimal" step="0.10" min="0" class="ajuste-input" id="precio-combinado">
   </div>
   <div class="ajuste-fila" data-tipo="cerveza">
-    <span class="ajuste-label">🍺 Cerveza / Refresco</span>
+    <span class="ajuste-label">🍺 Cerveza</span>
     <input type="number" inputmode="decimal" step="0.10" min="0" class="ajuste-input" id="precio-cerveza">
+  </div>
+  <div class="ajuste-fila" data-tipo="refresco">
+    <span class="ajuste-label">⚡ Refresco / Energética</span>
+    <input type="number" inputmode="decimal" step="0.10" min="0" class="ajuste-input" id="precio-refresco">
   </div>
   <div class="ajuste-fila" data-tipo="agua">
     <span class="ajuste-label">💧 Agua</span>
@@ -55,7 +59,7 @@
     <article class="ticket-card" data-tipo="cerveza">
       <div class="ticket-info">
         <span class="ticket-icono">🍺</span>
-        <span class="ticket-nombre">Cerveza / Refresco</span>
+        <span class="ticket-nombre">Cerveza</span>
         <span class="ticket-precio" id="pu-cerveza">0,00 €</span>
       </div>
       <div class="ticket-controles">
@@ -64,6 +68,20 @@
         <button class="btn-contador mas" data-tipo="cerveza" data-accion="mas" aria-label="Sumar cerveza">+</button>
       </div>
       <div class="ticket-subtotal" id="sub-cerveza">0,00 €</div>
+    </article>
+
+    <article class="ticket-card" data-tipo="refresco">
+      <div class="ticket-info">
+        <span class="ticket-icono">⚡</span>
+        <span class="ticket-nombre">Refresco / Energética</span>
+        <span class="ticket-precio" id="pu-refresco">0,00 €</span>
+      </div>
+      <div class="ticket-controles">
+        <button class="btn-contador menos" data-tipo="refresco" data-accion="menos" aria-label="Restar refresco">−</button>
+        <span class="ticket-cantidad" id="cant-refresco">0</span>
+        <button class="btn-contador mas" data-tipo="refresco" data-accion="mas" aria-label="Sumar refresco">+</button>
+      </div>
+      <div class="ticket-subtotal" id="sub-refresco">0,00 €</div>
     </article>
 
     <article class="ticket-card" data-tipo="agua">

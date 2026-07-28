@@ -10,16 +10,17 @@
   // Todo el dinero se maneja en CÉNTIMOS (enteros) para que no haya
   // errores de redondeo con decimales, ni en los subtotales ni en el cambio.
 
-  const TIPOS = ["combinado", "cerveza", "agua"];
+  const TIPOS = ["combinado", "cerveza", "refresco", "agua"];
 
   const PRECIOS_POR_DEFECTO = {
-    combinado: 500, // 5,00 €
-    cerveza: 200,   // 2,00 €
-    agua: 100       // 1,00 €
+    combinado: 700, // 7,00 €
+    cerveza: 300,   // 3,00 €
+    refresco: 400,  // 4,00 €
+    agua: 200       // 2,00 €
   };
 
   let precios = cargarPrecios();     // céntimos
-  let cantidades = { combinado: 0, cerveza: 0, agua: 0 };
+  let cantidades = { combinado: 0, cerveza: 0, refresco: 0, agua: 0 };
   let pagoCentimos = 0;              // lo que va tecleando la cajera
 
   // ---------- Utilidades de dinero ----------
@@ -154,7 +155,7 @@
   // ---------- Botón limpiar (siguiente cliente) ----------
 
   el.btnLimpiar.addEventListener("click", () => {
-    cantidades = { combinado: 0, cerveza: 0, agua: 0 };
+    cantidades = TIPOS.reduce((acc, t) => (acc[t] = 0, acc), {});
     pagoCentimos = 0;
     renderCantidadesYSubtotales();
     renderTotales();

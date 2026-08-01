@@ -22,6 +22,7 @@
 *{ box-sizing:border-box; -webkit-tap-highlight-color: transparent; }
 
 html,body{
+  font-size: 120%;
   margin:0;
   padding:0;
   background:var(--bg);

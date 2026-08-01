@@ -14,8 +14,8 @@
 
   const PRECIOS_POR_DEFECTO = {
     combinado: 700, // 7,00 €
-    cerveza: 300,   // 3,00 €
-    refresco: 400,  // 4,00 €
+    cerveza: 400,   // 4,00 €
+    refresco: 300,  // 3,00 €
     agua: 200       // 2,00 €
   };
 

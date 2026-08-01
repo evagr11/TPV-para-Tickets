@@ -242,8 +242,8 @@ input{
   margin-bottom:8px;
 }
 .ticket-icono{ font-size:20px; }
-.ticket-nombre{ font-size:28px; font-weight:700; flex:1; }
-.ticket-precio{ font-size:20px; color:var(--texto-tenue); font-weight:600; }
+.ticket-nombre{ font-size:22px; font-weight:700; flex:1; }
+.ticket-precio{ font-size:15px; color:var(--texto-tenue); font-weight:600; }
 
 .ticket-controles{
   display:flex;

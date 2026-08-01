@@ -242,21 +242,21 @@ input{
   margin-bottom:8px;
 }
 .ticket-icono{ font-size:20px; }
-.ticket-nombre{ font-size:34px; font-weight:700; flex:1; }
-.ticket-precio{ font-size:26px; color:var(--texto-tenue); font-weight:600; }
+.ticket-nombre{ font-size:28px; font-weight:700; flex:1; }
+.ticket-precio{ font-size:20px; color:var(--texto-tenue); font-weight:600; }
 
 .ticket-controles{
   display:flex;
   align-items:center;
   justify-content:center;
-  gap:35px;
+  gap:25px;
 }
 .btn-contador{
-  width:90px;
-  height:90px;
+  width:100px;
+  height:80px;
   border-radius:22px;
   background:var(--bg-elev-2);
-  font-size:52px;
+  font-size:42px;
   font-weight:800;
   color:var(--acento);
   line-height:1;
@@ -264,7 +264,7 @@ input{
 .ticket-cantidad{
   min-width:80px;
   text-align:center;
-  font-size:60px;
+  font-size:50px;
   font-weight:800;
   font-variant-numeric: tabular-nums;
 }

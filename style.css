@@ -211,9 +211,9 @@ input{
 
 /* ---------- APP ---------- */
 .app{
-  padding: 0 14px calc(24px + env(safe-area-inset-bottom)) 14px;
-  max-width:520px;
-  margin:0 auto;
+  width:100%;
+  max-width:none;
+  padding:0 20px calc(35px + env(safe-area-inset-bottom));
 }
 
 /* ---------- TICKETS ---------- */
@@ -227,7 +227,7 @@ input{
   background:var(--bg-elev);
   border:1px solid var(--linea);
   border-radius:var(--radio);
-  padding:12px 14px;
+  padding:22px;
   border-left:5px solid var(--acento, var(--texto-tenue));
 }
 .ticket-card[data-tipo="combinado"]{ --acento: var(--combinado); }
@@ -242,36 +242,36 @@ input{
   margin-bottom:8px;
 }
 .ticket-icono{ font-size:20px; }
-.ticket-nombre{ font-size:16px; font-weight:700; flex:1; }
-.ticket-precio{ font-size:13px; color:var(--texto-tenue); font-weight:600; }
+.ticket-nombre{ font-size:34px; font-weight:700; flex:1; }
+.ticket-precio{ font-size:26px; color:var(--texto-tenue); font-weight:600; }
 
 .ticket-controles{
   display:flex;
   align-items:center;
   justify-content:center;
-  gap:18px;
+  gap:35px;
 }
 .btn-contador{
-  width:56px;
-  height:56px;
-  border-radius:16px;
+  width:90px;
+  height:90px;
+  border-radius:22px;
   background:var(--bg-elev-2);
-  font-size:28px;
+  font-size:52px;
   font-weight:800;
   color:var(--acento);
   line-height:1;
 }
 .ticket-cantidad{
-  min-width:46px;
+  min-width:80px;
   text-align:center;
-  font-size:30px;
+  font-size:60px;
   font-weight:800;
   font-variant-numeric: tabular-nums;
 }
 .ticket-subtotal{
   text-align:right;
   margin-top:6px;
-  font-size:14px;
+  font-size:28px;
   font-weight:700;
   color:var(--texto-tenue);
   font-variant-numeric: tabular-nums;
@@ -289,7 +289,7 @@ input{
 }
 .total-label{ font-size:15px; font-weight:700; color:var(--texto-tenue); }
 .total-cifra{
-  font-size:30px;
+  font-size:60px;
   font-weight:900;
   font-variant-numeric: tabular-nums;
 }
@@ -310,7 +310,7 @@ input{
 }
 .pago-label{ font-size:15px; font-weight:600; color:var(--texto-tenue); }
 .pago-cifra{
-  font-size:22px;
+  font-size:42px;
   font-weight:800;
   font-variant-numeric: tabular-nums;
 }
@@ -336,9 +336,9 @@ input{
   background:var(--bg-elev);
   border:1px solid var(--linea);
   border-radius:14px;
-  font-size:22px;
+  font-size:42px;
   font-weight:700;
-  padding:16px 0;
+  padding:30px 0;
 }
 .tecla-borrar{ color:var(--rojo); font-size:20px; }
 .tecla-exacto{

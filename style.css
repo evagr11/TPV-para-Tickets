@@ -22,7 +22,6 @@
 *{ box-sizing:border-box; -webkit-tap-highlight-color: transparent; }
 
 html,body{
-  font-size: 120%;
   margin:0;
   padding:0;
   background:var(--bg);
@@ -33,96 +32,6 @@ html,body{
   user-select:none;
   -webkit-user-select:none;
   touch-action: manipulation; /* evita el zoom al tocar rápido varias veces */
-}
-
-/* ===== AUMENTAR TAMAÑO DE TODAS LAS LETRAS ===== */
-
-.topbar h1{
-  font-size:24px;
-}
-
-.icon-btn{
-  font-size:16px;
-}
-
-.panel-titulo{
-  font-size:16px;
-}
-
-.ajuste-label{
-  font-size:19px;
-}
-
-.ajuste-input{
-  font-size:21px;
-}
-
-.btn-primario{
-  font-size:20px;
-}
-
-.ticket-icono{
-  font-size:26px;
-}
-
-.ticket-nombre{
-  font-size:20px;
-}
-
-.ticket-precio{
-  font-size:16px;
-}
-
-.btn-contador{
-  font-size:34px;
-}
-
-.ticket-cantidad{
-  font-size:38px;
-}
-
-.ticket-subtotal{
-  font-size:17px;
-}
-
-.total-label{
-  font-size:19px;
-}
-
-.total-cifra{
-  font-size:38px;
-}
-
-.pago-label{
-  font-size:19px;
-}
-
-.pago-cifra{
-  font-size:28px;
-}
-
-.cambio-fila .pago-cifra{
-  font-size:32px;
-}
-
-.aviso-insuficiente{
-  font-size:16px;
-}
-
-.tecla{
-  font-size:28px;
-}
-
-.tecla-borrar{
-  font-size:25px;
-}
-
-.tecla-exacto{
-  font-size:19px;
-}
-
-.btn-limpiar{
-  font-size:19px;
 }
 
 button{
@@ -227,7 +136,7 @@ input{
   background:var(--bg-elev);
   border:1px solid var(--linea);
   border-radius:var(--radio);
-  padding:15px;
+  padding:12px 14px;
   border-left:5px solid var(--acento, var(--texto-tenue));
 }
 .ticket-card[data-tipo="combinado"]{ --acento: var(--combinado); }
@@ -242,36 +151,36 @@ input{
   margin-bottom:8px;
 }
 .ticket-icono{ font-size:20px; }
-.ticket-nombre{ font-size:22px; font-weight:700; flex:1; }
-.ticket-precio{ font-size:15px; color:var(--texto-tenue); font-weight:600; }
+.ticket-nombre{ font-size:16px; font-weight:700; flex:1; }
+.ticket-precio{ font-size:13px; color:var(--texto-tenue); font-weight:600; }
 
 .ticket-controles{
   display:flex;
   align-items:center;
   justify-content:center;
-  gap:25px;
+  gap:18px;
 }
 .btn-contador{
-  width:100px;
-  height:80px;
-  border-radius:22px;
+  width:56px;
+  height:56px;
+  border-radius:16px;
   background:var(--bg-elev-2);
-  font-size:42px;
+  font-size:28px;
   font-weight:800;
   color:var(--acento);
   line-height:1;
 }
 .ticket-cantidad{
-  min-width:80px;
+  min-width:46px;
   text-align:center;
-  font-size:50px;
+  font-size:30px;
   font-weight:800;
   font-variant-numeric: tabular-nums;
 }
 .ticket-subtotal{
   text-align:right;
   margin-top:6px;
-  font-size:18px;
+  font-size:14px;
   font-weight:700;
   color:var(--texto-tenue);
   font-variant-numeric: tabular-nums;
@@ -289,7 +198,7 @@ input{
 }
 .total-label{ font-size:15px; font-weight:700; color:var(--texto-tenue); }
 .total-cifra{
-  font-size:60px;
+  font-size:30px;
   font-weight:900;
   font-variant-numeric: tabular-nums;
 }
@@ -310,7 +219,7 @@ input{
 }
 .pago-label{ font-size:15px; font-weight:600; color:var(--texto-tenue); }
 .pago-cifra{
-  font-size:42px;
+  font-size:22px;
   font-weight:800;
   font-variant-numeric: tabular-nums;
 }
@@ -336,9 +245,9 @@ input{
   background:var(--bg-elev);
   border:1px solid var(--linea);
   border-radius:14px;
-  font-size:42px;
+  font-size:22px;
   font-weight:700;
-  padding:30px 0;
+  padding:16px 0;
 }
 .tecla-borrar{ color:var(--rojo); font-size:20px; }
 .tecla-exacto{

@@ -35,6 +35,96 @@ html,body{
   touch-action: manipulation; /* evita el zoom al tocar rápido varias veces */
 }
 
+/* ===== AUMENTAR TAMAÑO DE TODAS LAS LETRAS ===== */
+
+.topbar h1{
+  font-size:24px;
+}
+
+.icon-btn{
+  font-size:16px;
+}
+
+.panel-titulo{
+  font-size:16px;
+}
+
+.ajuste-label{
+  font-size:19px;
+}
+
+.ajuste-input{
+  font-size:21px;
+}
+
+.btn-primario{
+  font-size:20px;
+}
+
+.ticket-icono{
+  font-size:26px;
+}
+
+.ticket-nombre{
+  font-size:20px;
+}
+
+.ticket-precio{
+  font-size:16px;
+}
+
+.btn-contador{
+  font-size:34px;
+}
+
+.ticket-cantidad{
+  font-size:38px;
+}
+
+.ticket-subtotal{
+  font-size:17px;
+}
+
+.total-label{
+  font-size:19px;
+}
+
+.total-cifra{
+  font-size:38px;
+}
+
+.pago-label{
+  font-size:19px;
+}
+
+.pago-cifra{
+  font-size:28px;
+}
+
+.cambio-fila .pago-cifra{
+  font-size:32px;
+}
+
+.aviso-insuficiente{
+  font-size:16px;
+}
+
+.tecla{
+  font-size:28px;
+}
+
+.tecla-borrar{
+  font-size:25px;
+}
+
+.tecla-exacto{
+  font-size:19px;
+}
+
+.btn-limpiar{
+  font-size:19px;
+}
+
 button{
   font-family:inherit;
   border:none;

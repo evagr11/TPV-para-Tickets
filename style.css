@@ -211,9 +211,9 @@ input{
 
 /* ---------- APP ---------- */
 .app{
-  width:100%;
-  max-width:none;
-  padding:0 20px calc(35px + env(safe-area-inset-bottom));
+  padding: 0 14px calc(24px + env(safe-area-inset-bottom)) 14px;
+  max-width:520px;
+  margin:0 auto;
 }
 
 /* ---------- TICKETS ---------- */

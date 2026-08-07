@@ -13,8 +13,8 @@
   const TIPOS = ["combinado", "cerveza", "refresco", "agua"];
 
   const PRECIOS_POR_DEFECTO = {
-    combinado: 700, // 7,00 €
-    cerveza: 400,   // 4,00 €
+    combinado: 600, // 6,00 €
+    cerveza: 350,   // 3,50 €
     refresco: 300,  // 3,00 €
     agua: 200       // 2,00 €
   };

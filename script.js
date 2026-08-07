@@ -21,7 +21,14 @@
 
   let precios = cargarPrecios();     // céntimos
   let cantidades = { combinado: 0, cerveza: 0, refresco: 0, agua: 0 };
-  let pagoCentimos = 0;              // lo que va tecleando la cajera
+  let pagoTexto = "";
+  
+  function pagoEnCentimos() {
+    if (!pagoTexto) return 0;
+    const numero = parseFloat(pagoTexto.replace(",", "."));
+    if (!Number.isFinite(numero)) return 0;
+    return Math.round(numero * 100);
+  }
 
   // ---------- Utilidades de dinero ----------
 
@@ -92,6 +99,8 @@
   function renderTotales() {
     const total = totalCentimos();
     el.totalCifra.textContent = formatearCentimos(total);
+    const pagoCentimos = pagoEnCentimos();
+
     el.pagoCifra.textContent = formatearCentimos(pagoCentimos);
 
     const cambio = pagoCentimos - total;
@@ -133,20 +142,32 @@
   // El importe se teclea "como en un datáfono": cada dígit entra por la
   // derecha (ej. 5 -> 0,05€ ; luego 0 -> 0,50€ ; luego 0 -> 5,00€).
 
-  const LIMITE_PAGO_CENTIMOS = 9999999; // tope de seguridad (99.999,99 €)
-
   document.querySelectorAll(".tecla").forEach(btn => {
     btn.addEventListener("click", () => {
       const key = btn.dataset.key;
-
       if (key === "borrar") {
-        pagoCentimos = Math.floor(pagoCentimos / 10);
+        pagoTexto = pagoTexto.slice(0, -1);
       } else if (key === "exacto") {
-        pagoCentimos = totalCentimos();
+        pagoTexto = (totalCentimos() / 100)
+          .toFixed(2)
+          .replace(".", ",");
+      } else if (key === ",") {
+        if (!pagoTexto.includes(",")) {
+          if (pagoTexto === "") {
+            pagoTexto = "0,";
+          } else {
+            pagoTexto += ",";
+          }
+        }
       } else {
-        const digito = parseInt(key, 10);
-        const nuevo = pagoCentimos * 10 + digito;
-        if (nuevo <= LIMITE_PAGO_CENTIMOS) pagoCentimos = nuevo;
+        if (pagoTexto.includes(",")) {
+          const decimales = pagoTexto.split(",")[1];
+          if (decimales.length < 2) {
+            pagoTexto += key;
+          }
+        } else {
+          pagoTexto += key;
+        }
       }
       renderTotales();
     });
@@ -156,7 +177,7 @@
 
   el.btnLimpiar.addEventListener("click", () => {
     cantidades = TIPOS.reduce((acc, t) => (acc[t] = 0, acc), {});
-    pagoCentimos = 0;
+    pagoTexto = "";
     renderCantidadesYSubtotales();
     renderTotales();
   });

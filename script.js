@@ -24,10 +24,21 @@
   let pagoTexto = "";
   
   function pagoEnCentimos() {
-    if (!pagoTexto) return 0;
-    const numero = parseFloat(pagoTexto.replace(",", "."));
-    if (!Number.isFinite(numero)) return 0;
-    return Math.round(numero * 100);
+    if (pagoTexto === "") return 0;
+    if (!pagoTexto.includes(",")) {
+      // Solo euros
+      return parseInt(pagoTexto, 10) * 100;
+    }
+    const partes = pagoTexto.split(",");
+    const euros = partes[0] === "" ? 0 : parseInt(partes[0], 10);
+    let centimos = partes[1] || "";
+    if (centimos.length === 1) {
+      centimos += "0";
+    }
+    if (centimos.length === 0) {
+      centimos = "00";
+    }
+    return euros * 100 + parseInt(centimos, 10);
   }
 
   // ---------- Utilidades de dinero ----------

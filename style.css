@@ -4,17 +4,15 @@
   --bg-elev-2: #262052;
   --linea: #362e63;
 
-  --combinado: #ff8a3d;
-  --cerveza: #7cff6b;
-  --refresco: #ffcb3d;
-  --agua: #3ddcff;
+  /* Un color por bloque del cartel */
+  --bebida: #3ddcff;
+  --v400: #ffcb3d;
+  --v900: #ff8a3d;
 
   --texto: #f5f2ff;
   --texto-tenue: #a79ed6;
-
   --verde: #37e08c;
   --rojo: #ff4d6d;
-
   --radio: 18px;
   --radio-chico: 12px;
 }
@@ -87,6 +85,12 @@ input{
   text-transform:uppercase;
   letter-spacing:0.5px;
 }
+.ajuste-categoria{
+  margin:14px 0 2px 0;
+  font-size:14px;
+  font-weight:800;
+  color:var(--texto);
+}
 .ajuste-fila{
   display:flex;
   align-items:center;
@@ -94,7 +98,6 @@ input{
   padding:8px 0;
   border-bottom:1px solid var(--linea);
 }
-.ajuste-fila:last-of-type{ border-bottom:none; }
 .ajuste-label{ font-size:15px; font-weight:600; }
 .ajuste-input{
   width:90px;
@@ -125,61 +128,77 @@ input{
   margin:0 auto;
 }
 
-/* ---------- TICKETS ---------- */
+/* ---------- PRODUCTOS ---------- */
 .tickets{
   display:flex;
   flex-direction:column;
-  gap:10px;
+  gap:8px;
   margin-bottom:14px;
 }
+
+.categoria-titulo{
+  margin:10px 2px 0 2px;
+  font-size:17px;
+  font-weight:800;
+  color:var(--acento, var(--texto));
+}
+.categoria-titulo:first-child{ margin-top:2px; }
+.categoria-titulo[data-categoria="bebida"], .ticket-card[data-categoria="bebida"]{ --acento: var(--bebida); }
+.categoria-titulo[data-categoria="v400"],   .ticket-card[data-categoria="v400"]{   --acento: var(--v400); }
+.categoria-titulo[data-categoria="v900"],   .ticket-card[data-categoria="v900"]{   --acento: var(--v900); }
+
+/* Tarjeta compacta en una sola fila: producto | contador | subtotal */
 .ticket-card{
+  display:grid;
+  grid-template-columns: 1fr auto 74px;
+  align-items:center;
+  gap:10px;
   background:var(--bg-elev);
   border:1px solid var(--linea);
   border-radius:var(--radio);
-  padding:12px 14px;
+  padding:10px 12px;
   border-left:5px solid var(--acento, var(--texto-tenue));
 }
-.ticket-card[data-tipo="combinado"]{ --acento: var(--combinado); }
-.ticket-card[data-tipo="cerveza"]{ --acento: var(--cerveza); }
-.ticket-card[data-tipo="refresco"]{ --acento: var(--refresco); }
-.ticket-card[data-tipo="agua"]{ --acento: var(--agua); }
 
 .ticket-info{
   display:flex;
-  align-items:baseline;
+  align-items:center;
   gap:8px;
-  margin-bottom:8px;
+  min-width:0;
 }
-.ticket-icono{ font-size:20px; }
-.ticket-nombre{ font-size:16px; font-weight:700; flex:1; }
-.ticket-precio{ font-size:13px; color:var(--texto-tenue); font-weight:600; }
+.ticket-icono{ font-size:22px; }
+.ticket-textos{
+  display:flex;
+  flex-direction:column;
+  min-width:0;
+}
+.ticket-nombre{ font-size:15px; font-weight:700; line-height:1.2; }
+.ticket-precio{ font-size:12px; color:var(--texto-tenue); font-weight:600; }
 
 .ticket-controles{
   display:flex;
   align-items:center;
-  justify-content:center;
-  gap:18px;
+  gap:8px;
 }
 .btn-contador{
-  width:56px;
-  height:56px;
-  border-radius:16px;
+  width:46px;
+  height:46px;
+  border-radius:14px;
   background:var(--bg-elev-2);
-  font-size:28px;
+  font-size:26px;
   font-weight:800;
   color:var(--acento);
   line-height:1;
 }
 .ticket-cantidad{
-  min-width:46px;
+  min-width:28px;
   text-align:center;
-  font-size:30px;
+  font-size:24px;
   font-weight:800;
   font-variant-numeric: tabular-nums;
 }
 .ticket-subtotal{
   text-align:right;
-  margin-top:6px;
   font-size:14px;
   font-weight:700;
   color:var(--texto-tenue);
@@ -266,9 +285,11 @@ input{
   font-weight:800;
   border-radius:var(--radio-chico);
   padding:14px;
+  margin-bottom:12px;
 }
 
-@media (max-width:340px){
-  .btn-contador{ width:48px; height:48px; font-size:24px; }
-  .ticket-cantidad{ font-size:26px; }
+@media (max-width:360px){
+  .ticket-card{ grid-template-columns: 1fr auto 62px; gap:6px; padding:8px 10px; }
+  .btn-contador{ width:40px; height:40px; font-size:22px; }
+  .ticket-cantidad{ font-size:20px; min-width:22px; }
 }

@@ -6,23 +6,43 @@
   document.addEventListener("gesturestart", (e) => e.preventDefault());
   document.addEventListener("gesturechange", (e) => e.preventDefault());
 
-  // ---------- Estado ----------
+  // ---------- Catálogo ----------
   // Todo el dinero se maneja en CÉNTIMOS (enteros) para que no haya
   // errores de redondeo con decimales, ni en los subtotales ni en el cambio.
+  //
+  // Para cambiar un producto o un precio por defecto, edita solo este array.
+  // "categoria" decide en qué bloque aparece (ver CATEGORIAS más abajo).
+  const CATEGORIAS = [
+    { id: "bebida", titulo: "La bebida" },
+    { id: "v400",   titulo: "Vaso 400cl" },
+    { id: "v900",   titulo: "Vaso 900cl" }
+  ];
 
-  const TIPOS = ["combinado", "cerveza", "refresco", "agua"];
+  const PRODUCTOS = [
+    { id: "vaso",       categoria: "bebida", icono: "🥛", nombre: "Vaso",            precio: 100 },
+    { id: "agua",       categoria: "bebida", icono: "💧", nombre: "Agua",            precio: 200 },
+    { id: "monster",    categoria: "bebida", icono: "⚡", nombre: "Monster",         precio: 400 },
 
-  const PRECIOS_POR_DEFECTO = {
-    combinado: 700, // 7,00 €
-    cerveza: 400,   // 4,00 €
-    refresco: 300,  // 3,00 €
-    agua: 200       // 2,00 €
-  };
+    { id: "cerveza400", categoria: "v400",   icono: "🍺", nombre: "Cerveza",         precio: 400 },
+    { id: "tinto400",   categoria: "v400",   icono: "🍷", nombre: "Tinto de Verano", precio: 400 },
+    { id: "refresco400",categoria: "v400",   icono: "🥤", nombre: "Refresco",        precio: 400 },
+    { id: "combi400",   categoria: "v400",   icono: "🍹", nombre: "Combinado",       precio: 800 },
 
-  let precios = cargarPrecios();     // céntimos
-  let cantidades = { combinado: 0, cerveza: 0, refresco: 0, agua: 0 };
+    { id: "cerveza900", categoria: "v900",   icono: "🍺", nombre: "Cerveza",         precio: 800 },
+    { id: "tinto900",   categoria: "v900",   icono: "🍷", nombre: "Tinto de Verano", precio: 800 },
+    { id: "refresco900",categoria: "v900",   icono: "🥤", nombre: "Refresco",        precio: 800 },
+    { id: "combi900",   categoria: "v900",   icono: "🍹", nombre: "Combinado",       precio: 1600 }
+  ];
+
+  const IDS = PRODUCTOS.map(p => p.id);
+  const PRECIOS_POR_DEFECTO = PRODUCTOS.reduce((acc, p) => (acc[p.id] = p.precio, acc), {});
+  const CLAVE_STORAGE = "barra_precios_contempopranea_v2"; // clave nueva: ignora precios guardados de la versión anterior
+
+  // ---------- Estado ----------
+  let precios = cargarPrecios(); // céntimos
+  let cantidades = IDS.reduce((acc, id) => (acc[id] = 0, acc), {});
   let pagoTexto = "";
-  
+
   function pagoEnCentimos() {
     if (pagoTexto === "") return 0;
     if (!pagoTexto.includes(",")) {
@@ -32,17 +52,12 @@
     const partes = pagoTexto.split(",");
     const euros = partes[0] === "" ? 0 : parseInt(partes[0], 10);
     let centimos = partes[1] || "";
-    if (centimos.length === 1) {
-      centimos += "0";
-    }
-    if (centimos.length === 0) {
-      centimos = "00";
-    }
+    if (centimos.length === 1) centimos += "0";
+    if (centimos.length === 0) centimos = "00";
     return euros * 100 + parseInt(centimos, 10);
   }
 
   // ---------- Utilidades de dinero ----------
-
   function formatearCentimos(centimos) {
     const euros = centimos / 100;
     return euros.toLocaleString("es-ES", {
@@ -52,17 +67,16 @@
   }
 
   function totalCentimos() {
-    return TIPOS.reduce((acc, t) => acc + precios[t] * cantidades[t], 0);
+    return IDS.reduce((acc, id) => acc + precios[id] * cantidades[id], 0);
   }
 
   // ---------- Persistencia de precios ----------
-
   function cargarPrecios() {
     try {
-      const guardado = localStorage.getItem("barra_precios_centimos");
+      const guardado = localStorage.getItem(CLAVE_STORAGE);
       if (guardado) {
         const obj = JSON.parse(guardado);
-        if (TIPOS.every(t => Number.isFinite(obj[t]))) return obj;
+        if (IDS.every(id => Number.isFinite(obj[id]))) return obj;
       }
     } catch (e) { /* si falla, usamos los de por defecto */ }
     return { ...PRECIOS_POR_DEFECTO };
@@ -70,12 +84,50 @@
 
   function guardarPrecios() {
     try {
-      localStorage.setItem("barra_precios_centimos", JSON.stringify(precios));
+      localStorage.setItem(CLAVE_STORAGE, JSON.stringify(precios));
     } catch (e) { /* almacenamiento no disponible, seguimos igualmente */ }
   }
 
-  // ---------- Referencias DOM ----------
+  // ---------- Construcción de la interfaz ----------
+  const contenedorProductos = document.getElementById("listaProductos");
+  const contenedorAjustes = document.getElementById("ajustesLista");
 
+  function construirProductos() {
+    contenedorProductos.innerHTML = CATEGORIAS.map(cat => {
+      const tarjetas = PRODUCTOS.filter(p => p.categoria === cat.id).map(p => `
+        <article class="ticket-card" data-categoria="${cat.id}">
+          <div class="ticket-info">
+            <span class="ticket-icono">${p.icono}</span>
+            <div class="ticket-textos">
+              <span class="ticket-nombre">${p.nombre}</span>
+              <span class="ticket-precio" id="pu-${p.id}">0,00 €</span>
+            </div>
+          </div>
+          <div class="ticket-controles">
+            <button class="btn-contador menos" data-id="${p.id}" data-accion="menos" aria-label="Restar ${p.nombre}">−</button>
+            <span class="ticket-cantidad" id="cant-${p.id}">0</span>
+            <button class="btn-contador mas" data-id="${p.id}" data-accion="mas" aria-label="Sumar ${p.nombre}">+</button>
+          </div>
+          <div class="ticket-subtotal" id="sub-${p.id}">0,00 €</div>
+        </article>`).join("");
+      return `
+        <h2 class="categoria-titulo" data-categoria="${cat.id}">${cat.titulo}</h2>
+        ${tarjetas}`;
+    }).join("");
+
+    contenedorAjustes.innerHTML = CATEGORIAS.map(cat => {
+      const filas = PRODUCTOS.filter(p => p.categoria === cat.id).map(p => `
+        <div class="ajuste-fila">
+          <span class="ajuste-label">${p.icono} ${p.nombre}</span>
+          <input type="number" inputmode="decimal" step="0.10" min="0" class="ajuste-input" id="precio-${p.id}">
+        </div>`).join("");
+      return `<p class="ajuste-categoria">${cat.titulo}</p>${filas}`;
+    }).join("");
+  }
+
+  construirProductos();
+
+  // ---------- Referencias DOM ----------
   const el = {
     totalCifra: document.getElementById("totalCifra"),
     pagoCifra: document.getElementById("pagoCifra"),
@@ -89,33 +141,31 @@
   };
 
   // ---------- Render ----------
-
   function renderPrecios() {
-    TIPOS.forEach(t => {
-      document.getElementById("pu-" + t).textContent =
-        formatearCentimos(precios[t]) + " / ud";
-      const input = document.getElementById("precio-" + t);
-      if (input) input.value = (precios[t] / 100).toFixed(2);
+    IDS.forEach(id => {
+      document.getElementById("pu-" + id).textContent =
+        formatearCentimos(precios[id]) + " / ud";
+      const input = document.getElementById("precio-" + id);
+      if (input) input.value = (precios[id] / 100).toFixed(2);
     });
   }
 
   function renderCantidadesYSubtotales() {
-    TIPOS.forEach(t => {
-      document.getElementById("cant-" + t).textContent = cantidades[t];
-      document.getElementById("sub-" + t).textContent =
-        formatearCentimos(precios[t] * cantidades[t]);
+    IDS.forEach(id => {
+      document.getElementById("cant-" + id).textContent = cantidades[id];
+      document.getElementById("sub-" + id).textContent =
+        formatearCentimos(precios[id] * cantidades[id]);
     });
   }
 
   function renderTotales() {
     const total = totalCentimos();
     el.totalCifra.textContent = formatearCentimos(total);
-    const pagoCentimos = pagoEnCentimos();
 
+    const pagoCentimos = pagoEnCentimos();
     el.pagoCifra.textContent = formatearCentimos(pagoCentimos);
 
     const cambio = pagoCentimos - total;
-
     if (cambio < 0) {
       el.cambioFila.classList.add("negativo");
       el.cambioCifra.textContent = formatearCentimos(Math.abs(cambio));
@@ -134,15 +184,14 @@
   }
 
   // ---------- Acciones: contadores ----------
-
   document.querySelectorAll(".btn-contador").forEach(btn => {
     btn.addEventListener("click", () => {
-      const tipo = btn.dataset.tipo;
+      const id = btn.dataset.id;
       const accion = btn.dataset.accion;
       if (accion === "mas") {
-        cantidades[tipo]++;
+        cantidades[id]++;
       } else if (accion === "menos") {
-        cantidades[tipo] = Math.max(0, cantidades[tipo] - 1);
+        cantidades[id] = Math.max(0, cantidades[id] - 1);
       }
       renderCantidadesYSubtotales();
       renderTotales();
@@ -150,12 +199,10 @@
   });
 
   // ---------- Acciones: teclado numérico (pago) ----------
-  // El importe se teclea "como en un datáfono": cada dígit entra por la
-  // derecha (ej. 5 -> 0,05€ ; luego 0 -> 0,50€ ; luego 0 -> 5,00€).
-
   document.querySelectorAll(".tecla").forEach(btn => {
     btn.addEventListener("click", () => {
       const key = btn.dataset.key;
+
       if (key === "borrar") {
         pagoTexto = pagoTexto.slice(0, -1);
       } else if (key === "exacto") {
@@ -164,18 +211,12 @@
           .replace(".", ",");
       } else if (key === ",") {
         if (!pagoTexto.includes(",")) {
-          if (pagoTexto === "") {
-            pagoTexto = "0,";
-          } else {
-            pagoTexto += ",";
-          }
+          pagoTexto = pagoTexto === "" ? "0," : pagoTexto + ",";
         }
       } else {
         if (pagoTexto.includes(",")) {
           const decimales = pagoTexto.split(",")[1];
-          if (decimales.length < 2) {
-            pagoTexto += key;
-          }
+          if (decimales.length < 2) pagoTexto += key;
         } else {
           pagoTexto += key;
         }
@@ -185,27 +226,25 @@
   });
 
   // ---------- Botón limpiar (siguiente cliente) ----------
-
   el.btnLimpiar.addEventListener("click", () => {
-    cantidades = TIPOS.reduce((acc, t) => (acc[t] = 0, acc), {});
+    cantidades = IDS.reduce((acc, id) => (acc[id] = 0, acc), {});
     pagoTexto = "";
     renderCantidadesYSubtotales();
     renderTotales();
   });
 
   // ---------- Panel de ajuste de precios ----------
-
   el.btnAjustes.addEventListener("click", () => {
     el.panelAjustes.classList.toggle("oculto");
   });
 
   el.btnGuardarPrecios.addEventListener("click", () => {
-    TIPOS.forEach(t => {
-      const input = document.getElementById("precio-" + t);
+    IDS.forEach(id => {
+      const input = document.getElementById("precio-" + id);
       const valorEuros = parseFloat(input.value.replace(",", "."));
       if (Number.isFinite(valorEuros) && valorEuros >= 0) {
         // Redondeamos a céntimos para evitar arrastrar decimales largos.
-        precios[t] = Math.round(valorEuros * 100);
+        precios[id] = Math.round(valorEuros * 100);
       }
     });
     guardarPrecios();
@@ -215,5 +254,4 @@
 
   // ---------- Arranque ----------
   renderTodo();
-
 })();

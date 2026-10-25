@@ -172,7 +172,7 @@ input{
   flex-direction:column;
   min-width:0;
 }
-.ticket-nombre{ font-size:15px; font-weight:700; line-height:1.2; }
+.ticket-nombre{ font-size:15px; font-weight:700; line-height:1.2; hyphens:auto; -webkit-hyphens:auto; overflow-wrap:break-word; }
 .ticket-precio{ font-size:12px; color:var(--texto-tenue); font-weight:600; }
 
 .ticket-controles{

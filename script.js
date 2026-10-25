@@ -14,8 +14,8 @@
   // "categoria" decide en qué bloque aparece (ver CATEGORIAS más abajo).
   const CATEGORIAS = [
     { id: "bebida", titulo: "La bebida" },
-    { id: "v400",   titulo: "Vaso 400cl" },
-    { id: "v900",   titulo: "Vaso 900cl" }
+    { id: "v400",   titulo: "Vaso 400 ml" },
+    { id: "v900",   titulo: "Vaso 900 ml" }
   ];
 
   const PRODUCTOS = [
@@ -255,3 +255,11 @@
   // ---------- Arranque ----------
   renderTodo();
 })();
+
+// ---------- Uso sin conexión ----------
+// Registra el service worker (sw.js) para que la app abra aunque no haya cobertura.
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("sw.js").catch(() => { /* sin service worker la app sigue funcionando online */ });
+  });
+}

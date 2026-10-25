@@ -1,0 +1,17 @@
+{
+  "name": "Contempopranea · Barra",
+  "short_name": "Barra",
+  "description": "TPV para cobrar los tickets de la barra de un festival, también sin conexión.",
+  "lang": "es",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#14102b",
+  "theme_color": "#14102b",
+  "icons": [
+    { "src": "icons/icono-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icono-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/icono-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

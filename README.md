@@ -1,10 +1,10 @@
 <div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0%3A0F0F1A%2C50%3A6C5CE7%2C100%3AA29BFE&height=200&section=header&text=TPV+para+Tickets&fontSize=60&fontColor=fff&fontAlignY=38&desc=Una+sencilla+PWA+para+gestionar+la+venta+de+tickets+en+eventos&descAlignY=62&descSize=18" width="100%"/>
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0%3A0F0F1A%2C50%3A6C5CE7%2C100%3AA29BFE&height=200&section=header&text=TPV+Barra+Festival&fontSize=60&fontColor=fff&fontAlignY=38&desc=PWA+para+cobrar+la+barra+de+un+festival%2C+tambi%C3%A9n+sin+conexi%C3%B3n&descAlignY=62&descSize=18" width="100%"/>
 </div>
 
 <div align="center">
-  <a href="https://github.com/evagr11/TPV-para-Tickets"><img src="https://img.shields.io/badge/Ver_Código-0F0F1A?style=for-the-badge&logo=github&logoColor=white" alt="Ver Código"></a>
-  <a href="https://evagr11.github.io/TPV-para-Tickets/"><img src="https://img.shields.io/badge/Ver_Demo-6C5CE7?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Ver Demo"></a>
+  <a href="https://github.com/evagr11/tpv-barra-festival"><img src="https://img.shields.io/badge/Ver_Código-0F0F1A?style=for-the-badge&logo=github&logoColor=white" alt="Ver Código"></a>
+  <a href="https://evagr11.github.io/tpv-barra-festival/"><img src="https://img.shields.io/badge/Ver_Demo-6C5CE7?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Ver Demo"></a>
 </div>
 
 <div align="center">
@@ -13,7 +13,7 @@
 
 # 🚀 Sobre el Proyecto
 
-**TPV para Tickets** es una aplicación web ligera y minimalista diseñada para actuar como un Terminal Punto de Venta (TPV) en la barra de un evento o festival. Permite llevar la cuenta de las bebidas vendidas, calcular el total de la compra y gestionar el cambio a devolver de forma rápida y eficiente, con una interfaz optimizada para su uso en dispositivos móviles.
+**TPV Barra Festival** es una aplicación web ligera y minimalista diseñada para actuar como un Terminal Punto de Venta (TPV) en la barra de un evento o festival. Permite llevar la cuenta de las bebidas vendidas, calcular el total de la compra y gestionar el cambio a devolver de forma rápida y eficiente, con una interfaz optimizada para su uso en dispositivos móviles.
 
 La aplicación realiza todos los cálculos monetarios utilizando céntimos como unidad base (enteros) para **garantizar la máxima precisión** y evitar los errores de redondeo comunes al trabajar con números flotantes.
 
@@ -21,7 +21,7 @@ La aplicación realiza todos los cálculos monetarios utilizando céntimos como 
 
 <div align="center">
   <img src="https://github.com/user-attachments/assets/ab5ec012-8959-4621-a6d4-6afc5f77493d" alt="Mockup TPV" width="70%"/>
-  <p><em>Mockup TPV para Tickets</em></p>
+  <p><em>Mockup TPV Barra Festival</em></p>
 </div>
 
 Ahora mismo está configurada con la carta de la barra del festival **Contempopranea** (Don Benito): vasos, agua, Monster y cerveza, tinto de verano, refresco y combinado en vasos de 400 y 900 ml.
@@ -114,11 +114,11 @@ Si quieres probarlo en tu ordenador:
 
 1.  Clona el repositorio:
     ```bash
-    git clone https://github.com/evagr11/TPV-para-Tickets.git
+    git clone https://github.com/evagr11/tpv-barra-festival.git
     ```
 2.  Navega a la carpeta del proyecto:
     ```bash
-    cd TPV-para-Tickets
+    cd tpv-barra-festival
     ```
 3.  Abre el archivo `index.html` directamente en tu navegador.
 
